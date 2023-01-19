@@ -20,7 +20,7 @@ const getEstudiantes = async (req, res) => {
 
 const getEstudiantesComprobante = async (req, res) => {
   try {
-    const listAll = await estudianteModel.find({ estado_comprobante:null });
+    const listAll = await estudianteModel.find({ estado_comprobante:null, estado_inscripcion:APROBADO});
     res.send(listAll);
   } catch (error) {
     res.send(error);
