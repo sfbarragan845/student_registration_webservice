@@ -5,11 +5,6 @@ const usuarioSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    usuario_usuario:{
-        type: String,
-        required: true,
-        unique:true
-    },
     contrasenia_usuario:{
         type: String,
         required: true

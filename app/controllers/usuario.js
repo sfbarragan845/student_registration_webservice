@@ -1,5 +1,4 @@
 const usuarioModel = require("../models/usuario");
-const bcrypt = require("bcrypt")
 
 
 const getUsuarios = async (req, res) => {
@@ -33,20 +32,17 @@ const createUsuario = async (req, res) => {
   try {
     const {
       nombre_usuario,
-      usuario_usuario,
       contrasenia_usuario,
       correo_usuario,
     } = req.body;
-    const salt = await bcrypt.genSaltSync(11);
-    const hash = await bcrypt.hashSync(contrasenia_usuario, salt);
     const resDetail = await usuarioModel.create({
       nombre_usuario,
-      contrasenia_usuario: hash,
+      contrasenia_usuario,
       correo_usuario,
     });
     res.send({ data: resDetail });
   } catch (error) {
-    console.log(req.body);
+    console.log(error);
     res.send(error);
   }
 };
