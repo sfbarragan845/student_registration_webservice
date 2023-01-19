@@ -10,17 +10,8 @@ const getEstudiantesAll = async (req, res) => {
 };
 
 const getEstudiantes = async (req, res) => {
-  const filters = {};
-  const estado_inscripcion = req.query.estado_inscripcion;
-
-  if (estado_inscripcion) {
-    if (estado_inscripcion === "todo") {
-      filters.estado_inscripcion = { $in: [null] };
-    }
-  }
-
   try {
-    const listAll = await estudianteModel.find({ ...filters });
+    const listAll = await estudianteModel.find({ estado_inscripcion:null });
     res.send(listAll);
   } catch (error) {
     res.send(error);
@@ -181,7 +172,7 @@ const actualizarDatosEstudiante = async (req, res) => {
   try {
     const { _id } = req.params;
     const estado_inscripcion = req.body;
-    await estudianteModel.findByIdAndUpdate(
+    let resDetail = await estudianteModel.findByIdAndUpdate(
       { _id },
       {
         estado_inscripcion
