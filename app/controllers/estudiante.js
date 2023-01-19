@@ -170,10 +170,10 @@ const updateEstadoComprobante = async(req, res)=>{
 
 const actualizarDatosEstudiante = async (req, res) => {
   try {
-    const { _id } = req.params._id;
-    console.log(this._id);
+    const { _id } = req.params;
+    console.log(req.params);
     const estado_inscripcion = req.body;
-    console.log(this.estado_inscripcion);
+    console.log(req.body);
     let resDetail = await estudianteModel.findByIdAndUpdate(
       { _id },
       estado_inscripcion
