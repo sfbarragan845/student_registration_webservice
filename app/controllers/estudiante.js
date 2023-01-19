@@ -20,7 +20,7 @@ const getEstudiantes = async (req, res) => {
 
 const getEstudiantesComprobante = async (req, res) => {
   try {
-    const listAll = await estudianteModel.find({ estado_comprobante:null, estado_inscripcion:"APROBADO"});
+    const listAll = await estudianteModel.find({ estado_comprobante:null, estado_inscripcion:"APROBADO", comprobante:{$ne: null}});
     res.send(listAll);
   } catch (error) {
     res.send(error);
@@ -88,6 +88,7 @@ const createEstudiante = async (req, res) => {
       curso_estudiante,
       estado_inscripcion: null,
       estado_comprobante: null,
+      comprobante:null,
     } );
    
 
