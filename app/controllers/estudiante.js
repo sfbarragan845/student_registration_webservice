@@ -68,9 +68,6 @@ const createEstudiante = async (req, res) => {
       telefono_estudiante,
       tipo_estudiante,
       curso_estudiante,
-      estado_inscripcion,
-      estado_comprobante,
-      comprobante
     } );
    
 
