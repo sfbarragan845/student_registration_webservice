@@ -178,13 +178,9 @@ const actualizarDatosEstudiante = async (req, res) => {
         estado_inscripcion
       }
     );
-    res
-      .status(200)
-      .send({ message: "Estado de estudiante cambiado a rechazado." });
-  } catch (error) {
-    res
-      .status(500)
-      .send({ error: "Error en el servidor, intentar mas tarde." });
+    res.send({ data: resDetail });
+  }catch (error) {
+    res.send(error);
   }
 };
 
