@@ -1,8 +1,44 @@
 const estudianteModel = require("../models/estudiante");
 
-const getEstudiantes = async (req, res) => {
+const getEstudiantesAll = async (req, res) => {
   try {
     const listAll = await estudianteModel.find({});
+    res.send(listAll);
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+const getEstudiantes = async (req, res) => {
+  const filters = {};
+  const estado_inscripcion = req.query.estado_inscripcion;
+
+  if (estado_inscripcion) {
+    if (estado_inscripcion === "todo") {
+      filters.estado_inscripcion = { $in: [null] };
+    }
+  }
+
+  try {
+    const listAll = await estudianteModel.find({ ...filters });
+    res.send(listAll);
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+const getEstudiantesComprobante = async (req, res) => {
+  const filters = {};
+  const estado_comprobante = req.query.estado_comprobante;
+
+  if (estado_comprobante) {
+    if (estado_comprobante != "ACEPTADO" && estado_comprobante != "RECHAZADO" ) {
+      filters.estado_comprobante = { $in: [null] };
+    }
+  }
+
+  try {
+    const listAll = await estudianteModel.find({ ...filters });
     res.send(listAll);
   } catch (error) {
     res.send(error);
@@ -68,6 +104,8 @@ const createEstudiante = async (req, res) => {
       telefono_estudiante,
       tipo_estudiante,
       curso_estudiante,
+      estado_inscripcion: null,
+      estado_comprobante: null,
     } );
    
 
@@ -148,5 +186,28 @@ const updateEstadoComprobante = async(req, res)=>{
   }
 }
 
+const actualizarDatosEstudiante = async (req, res) => {
+  try {
+    const { _id } = req.params;
+    const estado = req.query.estado;
+    const valoresUpdate = {};
+    if (estado) {
+      valoresUpdate.estado_inscripcion = estado;
+    }
+    await estudianteModel.findOneAndUpdate(
+      { _id },
+      {
+        ...valoresUpdate,
+      }
+    );
+    res
+      .status(200)
+      .send({ message: "Estado de estudiante cambiado a rechazado." });
+  } catch (error) {
+    res
+      .status(500)
+      .send({ error: "Error en el servidor, intentar mas tarde." });
+  }
+};
 
-module.exports = { getEstudiantes, getEstudiante, searchEmail, searchCedula, createEstudiante, updateEstudiante, deleteEstudiante, uploadComprobante,updateEstadoComprobante };
+module.exports = { getEstudiantes, getEstudiante, searchEmail, searchCedula, createEstudiante, updateEstudiante, deleteEstudiante, uploadComprobante,updateEstadoComprobante,getEstudiantesAll,getEstudiantesComprobante,actualizarDatosEstudiante};
