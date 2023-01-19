@@ -28,17 +28,8 @@ const getEstudiantes = async (req, res) => {
 };
 
 const getEstudiantesComprobante = async (req, res) => {
-  const filters = {};
-  const estado_comprobante = req.query.estado_comprobante;
-
-  if (estado_comprobante) {
-    if (estado_comprobante != "ACEPTADO" && estado_comprobante != "RECHAZADO" ) {
-      filters.estado_comprobante = { $in: [null] };
-    }
-  }
-
   try {
-    const listAll = await estudianteModel.find({ ...filters });
+    const listAll = await estudianteModel.find({ estado_comprobante:null });
     res.send(listAll);
   } catch (error) {
     res.send(error);
@@ -189,15 +180,11 @@ const updateEstadoComprobante = async(req, res)=>{
 const actualizarDatosEstudiante = async (req, res) => {
   try {
     const { _id } = req.params;
-    const estado = req.query.estado;
-    const valoresUpdate = {};
-    if (estado) {
-      valoresUpdate.estado_inscripcion = estado;
-    }
-    await estudianteModel.findOneAndUpdate(
+    const estado_inscripcion = req.body;
+    await estudianteModel.findByIdAndUpdate(
       { _id },
       {
-        ...valoresUpdate,
+        estado_inscripcion
       }
     );
     res
