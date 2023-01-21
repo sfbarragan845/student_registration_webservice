@@ -11,7 +11,6 @@ router.get('/comprobante/', getEstudiantesComprobante)
 router.get('/inicio_secion', getEstudiantes)
 
 router.get('/inscripcion', getEstudiantesInscripcion)
-router.get('/comprobante', getEstudiantesComprobante)
 
 
 router.get('/inicio_secion', getEstudiantes)
