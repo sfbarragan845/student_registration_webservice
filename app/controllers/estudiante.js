@@ -18,6 +18,24 @@ const getEstudiantes = async (req, res) => {
   }
 };
 
+const getEstudiantesInscripcion = async (req, res) => {
+  try {
+    const listAll = await estudianteModel.find({ estado_inscripcion: "APROBADO" });
+    res.send(listAll);
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+const getEstudiantesComprobantes= async (req, res) => {
+  try {
+    const listAll = await estudianteModel.find({ estado_comprobante :"APROBADO" });
+    res.send(listAll);
+  } catch (error) {
+    res.send(error);
+  }
+};
+
 const getEstudiantesComprobante = async (req, res) => {
   try {
     const listAll = await estudianteModel.find({ estado_comprobante:null, estado_inscripcion:"APROBADO", comprobante:{$ne: null}});
@@ -185,4 +203,4 @@ const actualizarDatosEstudiante = async (req, res) => {
   }
 };
 
-module.exports = { getEstudiantes, getEstudiante, searchEmail, searchCedula, createEstudiante, updateEstudiante, deleteEstudiante, uploadComprobante,updateEstadoComprobante,getEstudiantesAll,getEstudiantesComprobante,actualizarDatosEstudiante};
+module.exports = { getEstudiantes, getEstudiante, searchEmail, searchCedula, createEstudiante, updateEstudiante, deleteEstudiante, uploadComprobante,updateEstadoComprobante,getEstudiantesAll,getEstudiantesComprobante,actualizarDatosEstudiante, getEstudiantesInscripcion,};

@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router();
-const { getEstudiantes , getEstudiante, createEstudiante, searchCedula, searchEmail,updateEstudiante, deleteEstudiante,uploadComprobante, updateEstadoComprobante,actualizarDatosEstudiante,getEstudiantesAll,getEstudiantesComprobante} = require('../controllers/estudiante')
+const { getEstudiantes , getEstudiante, createEstudiante, searchCedula, searchEmail,updateEstudiante, deleteEstudiante,uploadComprobante, updateEstadoComprobante,actualizarDatosEstudiante,getEstudiantesAll,getEstudiantesComprobante, getEstudiantesComprobante, getEstudiantesInscripcion} = require('../controllers/estudiante')
 
 router.get('/', getEstudiantes)
 
@@ -10,6 +10,11 @@ router.get('/comprobante/', getEstudiantesComprobante)
 
 router.get('/inicio_secion', getEstudiantes)
 
+router.get('/inscripcion', getEstudiantesInscripcion)
+router.get('/comprobante', getEstudiantesComprobante)
+
+
+router.get('/inicio_secion', getEstudiantes)
 
 router.get('/:_id', getEstudiante)
 
