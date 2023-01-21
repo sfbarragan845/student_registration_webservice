@@ -27,7 +27,7 @@ const getEstudiantesInscripcion = async (req, res) => {
   }
 };
 
-const getEstudiantesComprobantes= async (req, res) => {
+const getEstudiantesComprobantesAcept= async (req, res) => {
   try {
     const listAll = await estudianteModel.find({ estado_comprobante :"APROBADO" });
     res.send(listAll);
@@ -203,4 +203,4 @@ const actualizarDatosEstudiante = async (req, res) => {
   }
 };
 
-module.exports = { getEstudiantes, getEstudiante, searchEmail, searchCedula, createEstudiante, updateEstudiante, deleteEstudiante, uploadComprobante,updateEstadoComprobante,getEstudiantesAll,getEstudiantesComprobante,actualizarDatosEstudiante, getEstudiantesInscripcion,};
+module.exports = { getEstudiantes, getEstudiante, searchEmail, searchCedula, createEstudiante, updateEstudiante, deleteEstudiante, uploadComprobante,updateEstadoComprobante,getEstudiantesAll,getEstudiantesComprobante,actualizarDatosEstudiante, getEstudiantesInscripcion,getEstudiantesComprobantesAcept};
