@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router();
-const { getEstudiantes , getEstudiante, createEstudiante, searchCedula, searchEmail,updateEstudiante, deleteEstudiante,uploadComprobante, updateEstadoComprobante,actualizarDatosEstudiante,getEstudiantesAll,getEstudiantesComprobante, getEstudiantesComprobante, getEstudiantesInscripcion} = require('../controllers/estudiante')
+const { getEstudiantes , getEstudiante, createEstudiante, searchCedula, searchEmail,updateEstudiante, deleteEstudiante,uploadComprobante, updateEstadoComprobante,actualizarDatosEstudiante,getEstudiantesAll,getEstudiantesComprobante, getEstudiantesInscripcion} = require('../controllers/estudiante')
 
 router.get('/', getEstudiantes)
 
