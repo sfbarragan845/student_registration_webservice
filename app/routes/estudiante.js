@@ -23,6 +23,8 @@ router.post('/', createEstudiante)
 
 router.post('/searchCedula', searchCedula)
 
+router.post('/estudianteid', searchCedula)
+
 router.post('/searchEmail', searchEmail)
 
 router.patch('/', updateEstudiante)

@@ -9,6 +9,7 @@ const getEstudiantesAll = async (req, res) => {
   }
 };
 
+
 const getEstudiantes = async (req, res) => {
   try {
     const listAll = await estudianteModel.find({ estado_inscripcion:null });
